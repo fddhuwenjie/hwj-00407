@@ -7,6 +7,7 @@ class User extends Model {
   declare email: string;
   declare role: 'student' | 'instructor';
   declare avatar?: string;
+  declare passwordHash?: string;
   declare readonly createdAt: Date;
   declare readonly updatedAt: Date;
 }
@@ -33,6 +34,10 @@ User.init(
       defaultValue: 'student',
     },
     avatar: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    passwordHash: {
       type: DataTypes.STRING,
       allowNull: true,
     },
