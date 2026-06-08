@@ -3,19 +3,20 @@ export const instructorData = {
   email: 'liming@example.com',
   role: 'instructor' as const,
   avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=instructor',
+  password: 'instructor123',
 };
 
 export const studentsData = [
-  { name: '张伟', email: 'zhangwei@example.com', role: 'student' as const, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=zhangwei' },
-  { name: '李娜', email: 'lina@example.com', role: 'student' as const, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=lina' },
-  { name: '王强', email: 'wangqiang@example.com', role: 'student' as const, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=wangqiang' },
-  { name: '刘洋', email: 'liuyang@example.com', role: 'student' as const, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=liuyang' },
-  { name: '陈静', email: 'chenjing@example.com', role: 'student' as const, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=chenjing' },
-  { name: '杨帆', email: 'yangfan@example.com', role: 'student' as const, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=yangfan' },
-  { name: '赵敏', email: 'zhaomin@example.com', role: 'student' as const, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=zhaomin' },
-  { name: '黄磊', email: 'huanglei@example.com', role: 'student' as const, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=huanglei' },
-  { name: '周杰', email: 'zhoujie@example.com', role: 'student' as const, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=zhoujie' },
-  { name: '吴芳', email: 'wufang@example.com', role: 'student' as const, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=wufang' },
+  { name: '张伟', email: 'zhangwei@example.com', role: 'student' as const, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=zhangwei', password: 'zhangwei123' },
+  { name: '李娜', email: 'lina@example.com', role: 'student' as const, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=lina', password: 'lina123456' },
+  { name: '王强', email: 'wangqiang@example.com', role: 'student' as const, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=wangqiang', password: 'wangqiang123' },
+  { name: '刘洋', email: 'liuyang@example.com', role: 'student' as const, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=liuyang', password: 'liuyang123' },
+  { name: '陈静', email: 'chenjing@example.com', role: 'student' as const, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=chenjing', password: 'chenjing123' },
+  { name: '杨帆', email: 'yangfan@example.com', role: 'student' as const, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=yangfan', password: 'yangfan123' },
+  { name: '赵敏', email: 'zhaomin@example.com', role: 'student' as const, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=zhaomin', password: 'zhaomin123' },
+  { name: '黄磊', email: 'huanglei@example.com', role: 'student' as const, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=huanglei', password: 'huanglei123' },
+  { name: '周杰', email: 'zhoujie@example.com', role: 'student' as const, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=zhoujie', password: 'zhoujie123' },
+  { name: '吴芳', email: 'wufang@example.com', role: 'student' as const, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=wufang', password: 'wufang123456' },
 ];
 
 export const coursesData = [

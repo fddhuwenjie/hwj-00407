@@ -27,6 +27,7 @@ import {
   discussionPostsData,
   studentProgressConfig,
 } from './data.js';
+import { hashPassword } from '../utils/password.js';
 
 function generateCertificateNumber(): string {
   const date = new Date();
@@ -43,11 +44,24 @@ export async function seedDatabase() {
   await sequelize.sync({ force: true });
   console.log('✅ Database tables created');
 
-  const instructor = await User.create(instructorData);
-  console.log('✅ Instructor created:', instructor.name);
+  const instructorPasswordHash = await hashPassword(instructorData.password);
+  const instructor = await User.create({
+    ...instructorData,
+    passwordHash: instructorPasswordHash,
+  });
+  console.log('✅ Instructor created:', instructor.name, '(password:', instructorData.password, ')');
 
-  const students = await User.bulkCreate(studentsData);
-  console.log(`✅ ${students.length} students created`);
+  const studentsWithPasswords = await Promise.all(
+    studentsData.map(async (student) => ({
+      ...student,
+      passwordHash: await hashPassword(student.password),
+    }))
+  );
+  const students = await User.bulkCreate(studentsWithPasswords);
+  console.log(`✅ ${students.length} students created:`);
+  students.forEach((student, index) => {
+    console.log(`   - ${student.name}: ${studentsData[index].email} / ${studentsData[index].password}`);
+  });
 
   const createdCourses = [];
   const allLessons: { courseId: number; lessons: Lesson[] }[] = [];
