@@ -5,7 +5,7 @@ class Lesson extends Model {
   declare id: number;
   declare chapterId: number;
   declare title: string;
-  declare type: 'video' | 'document' | 'quiz';
+  declare type: 'video' | 'document' | 'quiz' | 'assignment';
   declare content: string;
   declare order: number;
   declare duration?: number;
@@ -33,7 +33,7 @@ Lesson.init(
       allowNull: false,
     },
     type: {
-      type: DataTypes.ENUM('video', 'document', 'quiz'),
+      type: DataTypes.ENUM('video', 'document', 'quiz', 'assignment'),
       allowNull: false,
     },
     content: {

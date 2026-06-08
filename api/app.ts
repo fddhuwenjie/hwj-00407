@@ -20,6 +20,9 @@ import lessonRoutes from './src/routes/lessonRoutes.js'
 import certificateRoutes from './src/routes/certificateRoutes.js'
 import discussionRoutes from './src/routes/discussionRoutes.js'
 import dashboardRoutes from './src/routes/dashboardRoutes.js'
+import assignmentRoutes from './src/routes/assignmentRoutes.js'
+import studyGroupRoutes from './src/routes/studyGroupRoutes.js'
+import noteRoutes from './src/routes/noteRoutes.js'
 import { initDatabase } from './src/seeders/seeder.js'
 
 let dbInitialized = false
@@ -57,6 +60,9 @@ app.use('/api/lessons', lessonRoutes)
 app.use('/api/certificates', certificateRoutes)
 app.use('/api/discussion', discussionRoutes)
 app.use('/api/instructor/dashboard', dashboardRoutes)
+app.use('/api/notes', noteRoutes)
+app.use('/api/groups', studyGroupRoutes)
+app.use('/api/assignments', assignmentRoutes)
 
 /**
  * health

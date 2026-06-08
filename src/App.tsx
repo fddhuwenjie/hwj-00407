@@ -9,6 +9,10 @@ import CertificatePage from '@/pages/CertificatePage';
 import VerifyCertificate from '@/pages/VerifyCertificate';
 import DiscussionPage from '@/pages/DiscussionPage';
 import DashboardPage from '@/pages/DashboardPage';
+import NotesPage from '@/pages/NotesPage';
+import StudyGroupsPage from '@/pages/StudyGroupsPage';
+import StudyGroupDetailPage from '@/pages/StudyGroupDetailPage';
+import InstructorAssignmentsPage from '@/pages/InstructorAssignmentsPage';
 import { useAuthStore } from '@/store/useAuthStore';
 
 export default function App() {
@@ -31,6 +35,10 @@ export default function App() {
           <Route path="/verify" element={<VerifyCertificate />} />
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/my-courses" element={<Profile />} />
+          <Route path="/notes" element={<NotesPage />} />
+          <Route path="/groups" element={<StudyGroupsPage />} />
+          <Route path="/groups/:groupId" element={<StudyGroupDetailPage />} />
+          <Route path="/instructor/assignments" element={<InstructorAssignmentsPage />} />
           <Route path="*" element={<div className="text-center py-20">
             <h2 className="text-2xl font-bold text-gray-900 mb-2">页面不存在</h2>
             <p className="text-gray-500">请检查您访问的地址是否正确</p>

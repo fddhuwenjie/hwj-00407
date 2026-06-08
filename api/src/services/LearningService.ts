@@ -7,7 +7,7 @@ interface OrderedLesson {
   id: number;
   chapterId: number;
   title: string;
-  type: 'video' | 'document' | 'quiz';
+  type: 'video' | 'document' | 'quiz' | 'assignment';
   order: number;
   chapterOrder: number;
 }

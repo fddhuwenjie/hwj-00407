@@ -1,7 +1,11 @@
 export type UserRole = 'student' | 'instructor';
-export type LessonType = 'video' | 'document' | 'quiz';
+export type LessonType = 'video' | 'document' | 'quiz' | 'assignment';
 export type QuestionType = 'single' | 'multiple' | 'boolean';
 export type CourseDifficulty = 'beginner' | 'intermediate' | 'advanced';
+export type AssignmentSubmissionStatus = 'not_submitted' | 'submitted' | 'graded' | 'late';
+export type NoteTag = 'normal' | 'important' | 'question';
+export type GroupRole = 'member' | 'admin';
+export type GroupJoinStatus = 'pending' | 'approved' | 'rejected';
 
 export interface User {
   id: number;
@@ -162,4 +166,138 @@ export interface LessonCompletion {
 export interface StudyTimeDistribution {
   range: string;
   count: number;
+}
+
+export interface Assignment {
+  id: number;
+  lessonId: number;
+  description: string;
+  dueDate: Date;
+  maxScore: number;
+  allowLateSubmission: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  lesson?: Lesson;
+  submissions?: AssignmentSubmission[];
+  _count?: {
+    submissions: number;
+  };
+}
+
+export interface AssignmentSubmission {
+  id: number;
+  assignmentId: number;
+  userId: number;
+  content: string;
+  score?: number;
+  feedback?: string;
+  submittedAt: Date;
+  gradedAt?: Date;
+  status: AssignmentSubmissionStatus;
+  user?: User;
+  assignment?: Assignment;
+}
+
+export interface AssignmentStats {
+  assignmentId: number;
+  assignmentTitle: string;
+  totalStudents: number;
+  submittedCount: number;
+  gradedCount: number;
+  submissionRate: number;
+  averageScore: number;
+  dueDate: Date;
+}
+
+export interface Note {
+  id: number;
+  userId: number;
+  courseId: number;
+  lessonId: number;
+  content: string;
+  timePoint?: number;
+  tag: NoteTag;
+  createdAt: Date;
+  updatedAt: Date;
+  course?: Course;
+  lesson?: Lesson;
+}
+
+export interface StudyGroup {
+  id: number;
+  name: string;
+  description: string;
+  courseId: number;
+  maxMembers: number;
+  createdBy: number;
+  createdAt: Date;
+  updatedAt: Date;
+  course?: Course;
+  creator?: User;
+  members?: GroupMember[];
+  discussions?: GroupDiscussion[];
+  goals?: GroupGoal[];
+  _count?: {
+    members: number;
+    discussions: number;
+  };
+}
+
+export interface GroupMember {
+  id: number;
+  groupId: number;
+  userId: number;
+  role: GroupRole;
+  status: GroupJoinStatus;
+  joinedAt: Date;
+  user?: User;
+  group?: StudyGroup;
+}
+
+export interface GroupDiscussion {
+  id: number;
+  groupId: number;
+  userId: number;
+  title: string;
+  content: string;
+  createdAt: Date;
+  updatedAt: Date;
+  user?: User;
+  group?: StudyGroup;
+  replies?: GroupDiscussionReply[];
+  _count?: {
+    replies: number;
+  };
+}
+
+export interface GroupDiscussionReply {
+  id: number;
+  discussionId: number;
+  userId: number;
+  content: string;
+  createdAt: Date;
+  user?: User;
+  discussion?: GroupDiscussion;
+}
+
+export interface GroupGoal {
+  id: number;
+  groupId: number;
+  weekStart: Date;
+  lessonsToComplete: number;
+  createdAt: Date;
+  group?: StudyGroup;
+}
+
+export interface GroupMemberProgress {
+  userId: number;
+  userName: string;
+  completedLessons: number;
+  totalLessons: number;
+  lessons: {
+    lessonId: number;
+    lessonTitle: string;
+    completed: boolean;
+  }[];
+  weeklyGoalMet: boolean;
 }

@@ -9,6 +9,14 @@ import QuizAttempt from './QuizAttempt.js';
 import Certificate from './Certificate.js';
 import DiscussionPost from './DiscussionPost.js';
 import DiscussionReply from './DiscussionReply.js';
+import Assignment from './Assignment.js';
+import AssignmentSubmission from './AssignmentSubmission.js';
+import Note from './Note.js';
+import StudyGroup from './StudyGroup.js';
+import GroupMember from './GroupMember.js';
+import GroupDiscussion from './GroupDiscussion.js';
+import GroupDiscussionReply from './GroupDiscussionReply.js';
+import GroupGoal from './GroupGoal.js';
 
 User.hasMany(Course, { foreignKey: 'instructorId', as: 'courses' });
 Course.belongsTo(User, { foreignKey: 'instructorId', as: 'instructor' });
@@ -54,6 +62,44 @@ DiscussionReply.belongsTo(User, { foreignKey: 'userId', as: 'user' });
 DiscussionPost.hasMany(DiscussionReply, { foreignKey: 'postId', as: 'replies' });
 DiscussionReply.belongsTo(DiscussionPost, { foreignKey: 'postId', as: 'post' });
 
+Lesson.hasOne(Assignment, { foreignKey: 'lessonId', as: 'assignment' });
+Assignment.belongsTo(Lesson, { foreignKey: 'lessonId', as: 'lesson' });
+
+Assignment.hasMany(AssignmentSubmission, { foreignKey: 'assignmentId', as: 'submissions' });
+AssignmentSubmission.belongsTo(Assignment, { foreignKey: 'assignmentId', as: 'assignment' });
+User.hasMany(AssignmentSubmission, { foreignKey: 'userId', as: 'assignmentSubmissions' });
+AssignmentSubmission.belongsTo(User, { foreignKey: 'userId', as: 'user' });
+
+User.hasMany(Note, { foreignKey: 'userId', as: 'notes' });
+Note.belongsTo(User, { foreignKey: 'userId', as: 'user' });
+Course.hasMany(Note, { foreignKey: 'courseId', as: 'notes' });
+Note.belongsTo(Course, { foreignKey: 'courseId', as: 'course' });
+Lesson.hasMany(Note, { foreignKey: 'lessonId', as: 'notes' });
+Note.belongsTo(Lesson, { foreignKey: 'lessonId', as: 'lesson' });
+
+Course.hasMany(StudyGroup, { foreignKey: 'courseId', as: 'studyGroups' });
+StudyGroup.belongsTo(Course, { foreignKey: 'courseId', as: 'course' });
+User.hasMany(StudyGroup, { foreignKey: 'createdBy', as: 'createdGroups' });
+StudyGroup.belongsTo(User, { foreignKey: 'createdBy', as: 'creator' });
+
+StudyGroup.hasMany(GroupMember, { foreignKey: 'groupId', as: 'members' });
+GroupMember.belongsTo(StudyGroup, { foreignKey: 'groupId', as: 'group' });
+User.hasMany(GroupMember, { foreignKey: 'userId', as: 'groupMemberships' });
+GroupMember.belongsTo(User, { foreignKey: 'userId', as: 'user' });
+
+StudyGroup.hasMany(GroupDiscussion, { foreignKey: 'groupId', as: 'discussions' });
+GroupDiscussion.belongsTo(StudyGroup, { foreignKey: 'groupId', as: 'group' });
+User.hasMany(GroupDiscussion, { foreignKey: 'userId', as: 'groupDiscussions' });
+GroupDiscussion.belongsTo(User, { foreignKey: 'userId', as: 'user' });
+
+GroupDiscussion.hasMany(GroupDiscussionReply, { foreignKey: 'discussionId', as: 'replies' });
+GroupDiscussionReply.belongsTo(GroupDiscussion, { foreignKey: 'discussionId', as: 'discussion' });
+User.hasMany(GroupDiscussionReply, { foreignKey: 'userId', as: 'groupDiscussionReplies' });
+GroupDiscussionReply.belongsTo(User, { foreignKey: 'userId', as: 'user' });
+
+StudyGroup.hasMany(GroupGoal, { foreignKey: 'groupId', as: 'goals' });
+GroupGoal.belongsTo(StudyGroup, { foreignKey: 'groupId', as: 'group' });
+
 export {
   User,
   Course,
@@ -66,4 +112,12 @@ export {
   Certificate,
   DiscussionPost,
   DiscussionReply,
+  Assignment,
+  AssignmentSubmission,
+  Note,
+  StudyGroup,
+  GroupMember,
+  GroupDiscussion,
+  GroupDiscussionReply,
+  GroupGoal,
 };

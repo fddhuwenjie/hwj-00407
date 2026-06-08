@@ -10,6 +10,9 @@ import {
   X,
   ChevronDown,
   LogOut,
+  StickyNote,
+  Users,
+  ClipboardList,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAuthStore } from '@/store/useAuthStore';
@@ -17,6 +20,9 @@ import { useAuthStore } from '@/store/useAuthStore';
 const navItems = [
   { path: '/', label: '首页', icon: Home, roles: ['student', 'instructor'] },
   { path: '/my-courses', label: '我的课程', icon: BookOpen, roles: ['student', 'instructor'] },
+  { path: '/notes', label: '我的笔记', icon: StickyNote, roles: ['student'] },
+  { path: '/groups', label: '学习小组', icon: Users, roles: ['student', 'instructor'] },
+  { path: '/instructor/assignments', label: '作业管理', icon: ClipboardList, roles: ['instructor'] },
   { path: '/profile', label: '个人中心', icon: User, roles: ['student', 'instructor'] },
   { path: '/verify', label: '证书验证', icon: Award, roles: ['student', 'instructor'] },
   { path: '/dashboard', label: '讲师后台', icon: BarChart3, roles: ['instructor'] },

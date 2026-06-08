@@ -14,6 +14,7 @@ import {
   Loader2,
   ArrowRight,
   BookOpen,
+  ClipboardList,
 } from 'lucide-react';
 import { useCourseStore } from '@/store/useCourseStore';
 import { useAuthStore } from '@/store/useAuthStore';
@@ -31,12 +32,14 @@ const lessonTypeIcons: Record<LessonType, React.ElementType> = {
   video: PlayCircle,
   document: FileText,
   quiz: HelpCircle,
+  assignment: ClipboardList,
 };
 
 const lessonTypeLabels: Record<LessonType, string> = {
   video: '视频',
   document: '文档',
   quiz: '测验',
+  assignment: '作业',
 };
 
 export default function CourseDetail() {
